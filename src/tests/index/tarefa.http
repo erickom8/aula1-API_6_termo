@@ -1,0 +1,9 @@
+@url = http://localhost:8080/tarefas
+
+POST {{url}}
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "descricao" : "Arrumar a cama" 
+}
