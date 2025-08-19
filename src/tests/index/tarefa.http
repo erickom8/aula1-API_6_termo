@@ -4,7 +4,7 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "id" : 2,
+    "id" : 3,
     "descricao" : "Regar a planta!!!!! (as 09h)" 
 }
 
@@ -12,11 +12,15 @@ Content-Type: application/json
 GET {{url}}
 
 ###
-PUT {{url}}/4
+PUT {{url}}/2
 Content-Type: application/json
 
 {
-    "descricao" : "Essa tarefa existe?" 
+    "descricao" : "Fazer ticket hd-23984" 
 }
+
 ###
-DELETE {{url}}/3
+DELETE {{url}}/2
+###
+
+GET {{url}}/4
