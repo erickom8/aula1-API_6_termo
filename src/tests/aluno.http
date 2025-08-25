@@ -1,12 +1,12 @@
-@url = http://localhost:8080/alunos
+@url = https://vigilant-funicular-7qg946gqgv42rw66-8080.app.github.dev/alunos
 
 POST {{url}}
 Content-Type: application/json
 
 {
-    "id" : 2,
-    "nome" : "Vinicius la Serra", 
-    "idade" : 20
+    "id" : 1,
+    "nome" : "Erick Cirico", 
+    "idade" : 21
 }
 
 ###
@@ -25,4 +25,4 @@ Content-Type: application/json
 DELETE {{url}}/2
 
 ###
-GET {{url}}/2
+GET {{url}}/1

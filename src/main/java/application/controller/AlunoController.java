@@ -56,9 +56,18 @@ public class AlunoController {
             );
         }
         
-        resultado.get().setNome(novosDados.getNome());
-        resultado.get().setIdade(novosDados.getIdade());
-        return alunoRepo.save(resultado.get());
+        Aluno alunoExistente = resultado.get();
+
+        if(novosDados.getIdade() != null){
+            alunoExistente.setIdade(novosDados.getIdade());
+        } 
+        if(novosDados.getNome() != null) {
+            alunoExistente.setNome(novosDados.getNome());
+
+        }
+
+        
+        return alunoRepo.save(alunoExistente);
         
 
     }
