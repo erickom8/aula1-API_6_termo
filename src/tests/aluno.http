@@ -1,24 +1,23 @@
-@url = https://vigilant-funicular-7qg946gqgv42rw66-8080.app.github.dev/alunos
+@url = https://miniature-bassoon-w6w7jpwwrj9hggp4-8080.app.github.dev/alunos
 
 POST {{url}}
 Content-Type: application/json
 
 {
-    "id" : 1,
-    "nome" : "Erick Cirico", 
-    "idade" : 21
+    "nome" : "Daniel", 
+    "idade" : 20
 }
 
 ###
 GET {{url}}
 
 ###
-PUT {{url}}/2
+PUT {{url}}/1
 Content-Type: application/json
 
 {
-    "nome" : "Vinicius la Serra",
-    "idade" : 20 
+    "nome" : "Erick Cirico",
+    "idade" : 21 
 }
 
 ###

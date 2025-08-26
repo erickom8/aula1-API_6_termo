@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import application.model.Aluno;
+import application.record.AlunoDTO;
+import application.record.AlunoInsertDTO;
 import application.repository.AlunoRepository;
 
 @RestController
@@ -25,12 +26,12 @@ public class AlunoController {
     private AlunoRepository alunoRepo;
 
     @PostMapping
-    public Aluno insert(@RequestBody Aluno novoAluno) {
-        return alunoRepo.save(novoAluno);
+    public AlunoDTO insert(@RequestBody AlunoInsertDTO novoAluno) {
+        return new AlunoDTO(alunoRepo.save(new Aluno(novoAluno)));
     }
 
     @GetMapping(("/{id}"))
-    public Aluno getOne(@PathVariable long id){
+    public AlunoDTO getOne(@PathVariable long id){
         Optional<Aluno> resultado = alunoRepo.findById(id); 
 
         if (resultado.isEmpty()){
@@ -38,16 +39,16 @@ public class AlunoController {
                 HttpStatus.NOT_FOUND, "Aluno não encontrado"
             );
         }
-        return resultado.get();
+        return new AlunoDTO(resultado.get());
     }
 
     @GetMapping
-    public List<Aluno> getAll() {
-        return alunoRepo.findAll();
+    public Iterable<AlunoDTO> getAll() {
+        return alunoRepo.findAll().stream().map(AlunoDTO::new).toList();
     }
 
     @PutMapping("/{id}")
-    public Aluno update(@PathVariable long id, @RequestBody Aluno novosDados) {
+    public AlunoDTO update(@PathVariable long id, @RequestBody AlunoInsertDTO novosDados) {
         Optional<Aluno> resultado = alunoRepo.findById(id);
         
         if(resultado.isEmpty()){
@@ -58,18 +59,14 @@ public class AlunoController {
         
         Aluno alunoExistente = resultado.get();
 
-        if(novosDados.getIdade() != null){
-            alunoExistente.setIdade(novosDados.getIdade());
-        } 
-        if(novosDados.getNome() != null) {
-            alunoExistente.setNome(novosDados.getNome());
-
+         if (novosDados.nome() != null) {
+            alunoExistente.setNome(novosDados.nome());
         }
-
         
-        return alunoRepo.save(alunoExistente);
-        
-
+         if (novosDados.idade() != null) {
+            alunoExistente.setIdade(novosDados.idade());
+         }
+        return new AlunoDTO(alunoRepo.save(alunoExistente));
     }
 
     @DeleteMapping("/{id}")
