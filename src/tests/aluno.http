@@ -4,24 +4,23 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "nome" : "Daniel", 
-    "idade" : 20
+    "nome" : "Rosangela", 
+    "idade" : 50
 }
 
 ###
 GET {{url}}
 
 ###
-PUT {{url}}/1
+PUT {{url}}/52
 Content-Type: application/json
 
 {
-    "nome" : "Erick Cirico",
-    "idade" : 21 
+    "idade" : 18 
 }
 
 ###
-DELETE {{url}}/2
+DELETE {{url}}/52
 
 ###
-GET {{url}}/1
+GET {{url}}/102
